@@ -53,10 +53,10 @@
                 this.log("Audio context initialized");
                 
                 // Load sounds
-                this.loadBackgroundMusic('./asset/game-music.mp3');
-                this.loadSoundEffect('place', './asset/place-block.mp3');
-                this.loadSoundEffect('clear', './asset/clear-line.mp3');
-                this.loadSoundEffect('gameOver', './asset/game-over.mp3');
+                this.loadBackgroundMusic('game-music.mp3');
+                this.loadSoundEffect('place', 'place-block.mp3');
+                this.loadSoundEffect('clear', 'clear-line.mp3');
+                this.loadSoundEffect('gameOver', 'game-over.mp3');
             } catch (e) {
                 console.error("Audio initialization error:", e);
             }
