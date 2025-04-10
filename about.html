@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Block Blast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hamburger.css">
+
+</head>
+<body class="about-page">
+    <!-- Top Menu -->
+    <nav class="top-menu">
+        <div class="logo">
+            <a href="/">Block Blast</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span>☰</span>
+        </div>
+        <div class="menu-links">
+            <a href="/about.html">About us</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/privacy.html">Privary Policy</a>
+            <a href="/terms.html">Terms and Conditions</a>
+        </div>
+    </nav>
+
+    <!-- About Us Content -->
+    <div class="about-container">
+        <h1>ABOUT US</h1>
+        <p>
+            Welcome to <strong>Block Blast</strong>, the ultimate destination for fans of space exploration and idle gaming! We are dedicated to bringing you the best gaming experience with our upgraded and enhanced version of this popular cosmic adventure. At Block Blast, we pride ourselves on delivering seamless gameplay, stunning graphics, and a variety of exciting features that keep players engaged for hours.
+        </p>
+        <p>
+            Our mission is to create a fun, competitive, and inclusive environment where players of all ages can test their strategy, patience, and creativity. Whether you're looking to relax with casual play or aim for the top spot on global leaderboards, Block Blast has something for everyone.
+        </p>
+        <p>
+            We continually update our platform with fresh content, innovative game modes, and special events to ensure that every visit feels new and exciting. Join our growing community of players today and discover why Block Blast is the premier hub for all things space exploration!
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Block Blast</p>
+    </footer>
+    <script>
+        // Dropdown menu toggle script
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const menuLinks = document.querySelector('.menu-links');
+
+            hamburger.addEventListener('click', () => {
+                menuLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            menuLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuLinks.classList.remove('active');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest('.top-menu')) {
+                    menuLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
