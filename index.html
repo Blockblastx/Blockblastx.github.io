@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Block Blast - Fun Grid Puzzle Game Online | Play Free Now</title>
+    <meta property="og:title" content="Block Blast - Fun Grid Puzzle Game Online">
+    <meta property="og:description" content="Enjoy Block Blast, a free puzzle game with colorful blocks and challenging grids. Play now and test your skills!">
+    <meta name="keywords" content="Block Blast, puzzle game, grid puzzle, online game, free puzzle game">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blockblastx.github.io/">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hamburger.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="responsive.css">
+    
+    <!-- Preload critical assets -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoGame",
+          "name": "Block Blast",
+          "description": "A fun grid puzzle game where you place colorful blocks to clear lines and score points.",
+          "genre": "Puzzle",
+          "operatingSystem": "Web",
+          "url": "https://blockblastx.github.io/",
+          "playMode": "SinglePlayer"
+        }
+        </script>
+        <script>
+            // This script ensures necessary directories exist for our audio files
+            window.assetsReady = false;
+            
+            // Create a virtual file system structure for assets
+            window.gameAssets = {
+                audio: {
+                    //path: './assets/audio/',
+                    // Define fallback URLs in case local files aren't available
+                    fallbacks: {
+                        music: 'game-music.mp3',
+                        place: 'place-block.mp3',
+                        clear: 'clear-line.mp3',
+                        gameOver: 'game-over.mp3'
+                    }
+                }
+            };
+            
+            window.assetsReady = true;
+        </script>
+
+</head>
+<body >
+
+    <nav class="top-menu">
+        <div class="logo">
+            <a href="/">Block Blast</a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span>☰</span>
+        </div>
+
+        <div class="menu-links" id="menu-links">
+            <a href="/about.html">About Us</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms and Conditions</a>
+        </div>
+    
+    </nav>
+
+    <!-- Loading screen -->
+    <div id="loading-screen" aria-live="polite">
+        <div class="loading-text">Loading Block Blast...</div>
+        <div class="spinner" role="progressbar" aria-label="Loading game"></div>
+    </div>
+
+    <div class="game-container" aria-label="Block Blast Game">
+        <div id="audio-controls-container" class="audio-controls-container">
+            <!-- Sound controls will be placed here by the JavaScript -->
+        </div>
+        <div class="container">
+            <!-- Score Header -->
+            <div class="row mb-3 justify-content-center">
+                <div class="col-lg-auto" >
+                    <div class="scores-container d-flex  justify-content-between">
+                        <div class="score" id="current-score" aria-label="Current Score" aria-live="polite">0</div>
+                        <div class="high-score">
+                            <span class="crown" aria-hidden="true">👑</span>
+                            <span class="score" id="high-score">2755</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Row with Grid and Blocks -->
+            <div class="row game-row justify-content-center align-items-start">
+                <!-- Grid Container -->
+                <div class="col-lg-auto mb-4 mb-lg-0">
+                    <div class="grid-container">
+                        <div class="grid" id="grid" role="grid" tabindex="0" aria-label="Game grid, 8 by 8 cells"></div>
+                    </div>
+                </div>
+                
+                <!-- Blocks Container -->
+                <div class="col-lg-auto">
+                    <div class="blocks-container" id="blocks-container" role="region" aria-label="Available blocks">
+                        <div class="block yellow-block" id="yellow-block" draggable="true" tabindex="0" role="button" aria-label="Yellow block">
+                            <div class="block-cell yellow-cell"></div>
+                            <div class="block-cell yellow-cell"></div>
+                            <div class="block-cell yellow-cell"></div>
+                            <div class="block-cell yellow-cell"></div>
+                            <div class="block-cell yellow-cell"></div>
+                            <div class="block-cell yellow-cell"></div>
+                        </div>
+                        
+                        <div class="block purple-block" id="purple-block" draggable="true" tabindex="0" role="button" aria-label="Purple block">
+                            <div class="block-cell purple-cell"></div>
+                            <div class="block-cell purple-cell"></div>
+                            <div class="block-cell purple-cell"></div>
+                            <div class="block-cell purple-cell"></div>
+                            <div class="block-cell purple-cell"></div>
+                        </div>
+                        
+                        <div class="block blue-block" id="blue-block" draggable="true" tabindex="0" role="button" aria-label="Blue block">
+                            <div class="block-cell blue-cell"></div>
+                            <div class="block-cell blue-cell"></div>
+                            <div class="block-cell blue-cell"></div>
+                            <div class="block-cell blue-cell"></div>
+                        </div>
+                        
+                        <div class="block green-block" id="green-block" draggable="true" tabindex="0" role="button" aria-label="Green block">
+                            <div class="block-cell green-cell"></div>
+                            <div class="block-cell green-cell"></div>
+                            <div class="block-cell green-cell"></div>
+                            <div class="block-cell green-cell"></div>
+                            <div class="block-cell green-cell"></div>
+                            <div class="block-cell green-cell"></div>
+                        </div>
+                        
+                        <div class="block red-block" id="red-block" draggable="true" tabindex="0" role="button" aria-label="Red block">
+                            <div class="block-cell red-cell"></div>
+                            <div class="block-cell red-cell"></div>
+                            <div class="block-cell red-cell"></div>
+                            <div class="block-cell red-cell"></div>
+                            <div class="block-cell red-cell"></div>
+                            <div class="block-cell red-cell"></div>
+                            <div class="block-cell red-cell"></div>
+                            <div class="block-cell red-cell"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Game over screen -->
+    <div id="game-over" aria-hidden="true" aria-live="assertive" role="dialog" aria-labelledby="game-over-title">
+        <h2 id="game-over-title" class="game-over-text">Game Over</h2>
+        <div class="final-score" aria-live="polite"></div>
+        <div class="stats" aria-live="polite"></div>
+        <button class="restart-button" id="restart-button" tabindex="0">Play Again</button>
+    </div>
+
+    <!-- Game Description Section -->
+    <div class="game-info">
+        <h2>🎮 Why is  <a href="https://Blockblastx.github.io"> Block Blast - Puzzle Games</a> so exciting?</h2>
+        <ul>
+            <li>🧩 <strong>Brain-teasing puzzles</strong> – Solve block puzzles to test your skills!</li>
+            <li>🌈 <strong>Vivid graphics</strong> – Enjoy colorful blocks and eye-catching effects!</li>
+            <li>🏆 <strong>Achievement goals</strong> – Complete levels and earn rewards to show off your talent!</li>
+            <li>🔄 <strong>Fresh challenges</strong> – New levels keep the game exciting!</li>
+        </ul>
+        <p>🔥 <strong>Play now at Block Blast and start your puzzle adventure!</strong> 🔥</p>
+    
+        <h2>⚔️ How to Play Block Blast – A Quick Guide</h2>
+        <p>Mastering <strong>Block Blast</strong> is easy to learn but tough to master! Here’s how to get started:</p>
+        <h3>🕹 <strong>Basic Controls</strong></h3>
+        <ul>
+            <li><strong>Drag blocks</strong> – Move blocks onto the grid to form complete lines.</li>
+            <li><strong>Clear lines</strong> – Fill rows or columns to remove blocks and score points.</li>
+            <li><strong>Plan ahead</strong> – Arrange blocks smartly to avoid running out of space.</li>
+        </ul>
+        <p>💡 <strong>Pro Tip</strong>: Always leave room for larger blocks in the early stages!</p>
+    
+        <h2>🔥 Game Mode in Block Blast</h2>
+        <ul>
+            <li>🧱 <strong>Classic Mode</strong> – Clear as many lines as possible at your own pace and conquer increasingly tough levels!</li>
+        </ul>
+        <p>🚀 <strong>Ready to test your skills? Play now at Block Blast!</strong></p>
+    
+        <h2>🏆 Best Strategies to Master Block Blast</h2>
+        <h3>🎯 <strong>A. Optimize Block Placement</strong></h3>
+        <ul>
+            <li>📏 <strong>Think ahead</strong> – Place blocks to set up multiple line clears at once.</li>
+            <li>🧠 <strong>Corner strategy</strong> – Start from the edges to keep the center open.</li>
+        </ul>
+        <h3>⚡ <strong>B. Manage Space Efficiently</strong></h3>
+        <ul>
+            <li>✂️ <strong>Avoid gaps</strong> – Fill spaces tightly to maximize clears.</li>
+            <li>🔍 <strong>Prioritize big blocks</strong> – Use larger pieces early to free up the grid.</li>
+        </ul>
+        <h3>🔥 <strong>C. Boost Your Score</strong></h3>
+        <ul>
+            <li>🎉 <strong>Combo clears</strong> – Clear multiple lines at once for bonus points.</li>
+            <li>⏳ <strong>Stay calm</strong> – Don’t rush; precision matters more than speed in tough spots.</li>
+        </ul>
+        <p>💡 <strong>Pro Tip</strong>: Clear vertical and horizontal lines together for massive combos!</p>
+    
+        <h2>🎁 Secret Tips & Hidden Tricks for Block Blast</h2>
+        <ul>
+            <li>🔄 <strong>Rotate your view</strong> – Mentally flip blocks to find the best fit.</li>
+            <li>👇 <strong>Tap lightly</strong> – On touch devices, gentle drags prevent misplacement.</li>
+            <li>📅 <strong>Daily challenges</strong> – Play daily levels for extra rewards and practice.</li>
+        </ul>
+        <p>💡 <strong>Want more puzzle fun? Visit Block Blast for an addictive experience!</strong> 🧩✨</p>
+    
+        <h2>🏁 Is Block Blast Worth Playing?</h2>
+        <p>If you love brain-challenging puzzle games, <strong>Block Blast</strong> is perfect for you! It’s simple, addictive, and super fun! 🤩</p>
+        <h3>✅ <strong>Pros</strong></h3>
+        <ul>
+            <li>🌟 <strong>Easy to pick up, hard to put down!</strong></li>
+            <li>⏳ <strong>Great for quick breaks or long sessions!</strong></li>
+            <li>🏆 <strong>Rewarding progression with every level!</strong></li>
+        </ul>
+        <h3>❌ <strong>Cons</strong></h3>
+        <ul>
+            <li>✖ <strong>Can get tricky at higher levels – but that’s the fun!</strong></li>
+            <li>✖ <strong>Requires focus – not a mindless game!</strong></li>
+        </ul>
+        <p>🎮 <strong>Final Verdict</strong>: Block Blast is a must-try for puzzle lovers!</p>
+        <p>🔭 <strong>Ready to blast some blocks? Play now at Block Blast!</strong> 🧩⚡</p>
+    
+        <h2>📢 Final Thoughts – Can You Become the Ultimate Block Blast Master?</h2>
+        <p>🚀 With these tips, you’re ready to conquer every level and dominate the grid!</p>
+        <p>👉 <strong>Play Block Blast now at Block Blast</strong></p>
+        <p>💡 <strong>Got an epic high score? Share it with friends and challenge them!</strong></p>
+        <p>🔥 <strong>Good luck, and may your puzzle-solving skills shine!</strong> 🌟🧩</p>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2025 Block Blast - Puzzle Games</p>
+    </footer>
+    
+    <!-- Load optimized scripts -->
+    <!-- <script src="responsive.js" defer></script> -->
+    <script src="testDrag.js" defer></script>
+    <script src="drop-only-fix.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="game_style.js" defer></script>
+    <script src="game-over-effects.js" defer></script>
+    <script src="effect_game.js" defer></script>
+    <script src="color-effects.js" defer></script>
+    <script src="audio-manager.js" defer></script>
+
+
+    <script>
+        // Dropdown menu toggle script
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const menuLinks = document.querySelector('.menu-links');
+
+            hamburger.addEventListener('click', () => {
+                menuLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            menuLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuLinks.classList.remove('active');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest('.top-menu')) {
+                    menuLinks.classList.remove('active');
+                }
+            });
+        });
+
+        
+    </script>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+</body>
+</html>
